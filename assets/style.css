@@ -7,6 +7,16 @@ body {
   max-width: 500px;
 }
 
+a {
+  text-decoration: none;
+  color: #996666;
+}
+
+.ss-twitter:before {
+  vertical-align: middle;
+  padding-right: 4px;
+}
+
 img {
   max-width: 100%;
 }
