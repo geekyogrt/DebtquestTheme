@@ -1,0 +1,21 @@
+body {
+  margin: 0 auto;
+  text-align: center;
+  background: url('bg.jpg');
+  font-family: "freight-text-pro", georgia, serif;
+  font-size: 18px;
+  max-width: 500px;
+}
+
+img {
+  max-width: 100%;
+}
+
+h2, h3, h4 {
+  font-style: italic;
+  font-weight: normal;
+}
+
+footer {
+  margin-top: 4em;
+}
