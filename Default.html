@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset=utf-8 />
-	<title>{site.title} | {title}</title>
+	<title>{site.title}{if type == 'archive'} | Archive{/if}</title>
 	<link rel="stylesheet" type="text/css" media="screen, projection" href="./assets/style.css" />
-	<link href="./assets/webfonts/ss-social.css" rel="stylesheet" />
+  <link href="./assets/webfonts/ss-social.css" rel="stylesheet" />
+	<link href="./assets/webfonts/ss-symbolicons-line.css" rel="stylesheet" />
 	<link rel="alternate" type="application/rss+xml" title="oak: Blog (RSS)" href="http://feeds.feedburner.com/BarLawrence" />
 	<script type="text/javascript" src="//use.typekit.net/tpm0tpl.js"></script>
 	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
@@ -12,35 +13,48 @@
 <body>
 
 	<header>
-		<h1><a href="./"><img src="./assets/logo.png" alt="{site.title}"/></a></h1>
-	</header>
-	
+    <small>Est. 2012</small>
+    <h1>
+      <a href="/">{site.title}</a>
+    </h1>
+    {if posts}
+      {if type == 'blog'}
+      {loop posts->post:limit(1)}<time datetime="{post.date:format('yyyy-mm-dd')}">{post.date:format('M d, YYYY')}</time>{/loop}
+      {else}
+      <small>{if type == 'archive'}The Archive{else}{title}{/if}</small>
+      {/if}
+    {/if}
+  </header>
+
 	{if posts}
-	  {if type == 'blog'}
-  	{loop posts->post:limit(1)}<h2>Menu for <time datetime="{post.date:format('yyyy-mm-dd')}">{post.date:format('M d, YYYY')}</time></h2>{/loop}
-  	{else}
-  	<h2>{if type == 'archive'}The Archive{else}{title}{/if}</h2>
-  	{/if}
-	
-  	{loop posts->post}
-  	<div class="post" itemscope itemtype="http://schema.org/Recipe">
-    	<h3 itemprop="name"><a href="{post.link}">{post.title}</a></h3>
-    	{if post.body}<div itemprop="description">{post.body}</div>{/if}
-  	</div>
-  	{/loop}
+    <dl itemscope itemtype="http://schema.org/Recipe">
+    {loop posts->post}
+      <dt itemprop="name">
+      {if type == 'archive'}<a href="{post.link}">{/if}
+        {post.title}
+      {if type == 'archive'}</a>{/if}
+      </dt>
+      {if post.body}<dd itemprop="ingredients">{post.body}</dd>{/if}
+    {/loop}
+    </dl>
   {else}
-    <div class="post" itemscope itemtype="http://schema.org/Recipe">
-    	<h3 itemprop="name">{title}</h3>
-    	<div itemprop="ingredients">{body}</div>
-  	</div>
+    <dl class="post" itemscope itemtype="http://schema.org/Recipe">
+    	<dt itemprop="name">{title}</dt>
+    	<dd itemprop="ingredients">{body}</dd>
+  	</dl>
 	{/if}
-	
-	<h2><small><a href="./menu/archive">The Archive</a></small></h2>
-  
+
   <footer>
-    <p>&copy; 2012 {site.title}</p>
-    <p><a href="http://twitter.com/barlawrence" target="_blank" class="ss-twitter">@barlawrence</a></p>
-    <p><small><a href="http://feeds.feedburner.com/BarLawrence" target="_blank" class="ss-icon">RSS</a></small></p>
+    <a href="./menu/archive">Archive</a>
+    <p><b>
+      Menu updates weekly, by invitation only.
+    </b></p>
+    <p>&copy; MMXII {site.title}</p>
+    <i class="ss-cocktail"></i>
+    <div class="social">
+      <p><a href="http://twitter.com/barlawrence" target="_blank" class="ss-twitter ss-social">@barlawrence</a></p>
+      <p><a href="http://feeds.feedburner.com/BarLawrence" target="_blank" class="ss-icon ss-social">RSS</a></p>
+    </div>
   </footer>
 
 </body>
