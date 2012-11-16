@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset=utf-8 />
+	<title>{site.title} | {title}</title>
+	<link rel="stylesheet" type="text/css" media="screen, projection" href="./assets/style.css" />
+	<link href="./assets/webfonts/ss-social.css" rel="stylesheet" />
+	<script type="text/javascript" src="//use.typekit.net/tpm0tpl.js"></script>
+	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+</head>
+<body>
+
+	<header>
+		<h1><a href="./"><img src="./assets/logo.png" alt="{site_title}"/></a></h1>
+	</header>
+	
+	{if posts}
+	  {if type == 'blog'}
+  	{loop posts->post:limit(1)}<h2>Menu for <time datetime="{post.date:format('yyyy-mm-dd')}">{post.date:format('M d, YYYY')}</time></h2>{/loop}
+  	{else}
+  	<h2>{if type == 'archive'}The Archive{else}{title}{/if}</h2>
+  	{/if}
+	
+  	{loop posts->post}
+  	<div class="post" itemscope itemtype="http://schema.org/Recipe">
+    	<h3 itemprop="name"><a href="{post.link}">{post.title}</a></h3>
+    	{if post.body}<div itemprop="description">{post.body}</div>{/if}
+  	</div>
+  	{/loop}
+  {else}
+    <div class="post" itemscope itemtype="http://schema.org/Recipe">
+    	<h3 itemprop="name">{title}</h3>
+    	<div itemprop="ingredients">{body}</div>
+  	</div>
+	{/if}
+	
+	<h2><small><a href="./menu/archive">The Archive</a></small></h2>
+  
+  <footer>
+    <p>&copy; 2012 {site.title}</p>
+    <p><a href="http://twitter.com/barlawrence" target="_blank" class="ss-twitter">@barlawrence</a></p>
+  </footer>
+
+</body>
+</html>
