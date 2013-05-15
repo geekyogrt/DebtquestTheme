@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset=utf-8 />
+	<title>{{site_title}}{{#archive}} | Archive{{/archive}}</title>
+	<link rel="stylesheet" href="./assets/style.css"  />
+  <link rel="stylesheet" href="//cdn.symbolset.com/e50f9502fcc9151fb1f671964600efa504506021/symbolset.css" />
+	<link rel="alternate" type="application/rss+xml" title="Bar Lawrence (RSS)" href="http://feeds.feedburner.com/BarLawrence" />
+	<script type="text/javascript" src="//use.typekit.net/tpm0tpl.js"></script>
+	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+</head>
+<body>
+
+	<header>
+    <small>Est. 2012</small>
+    <h1>
+      <a href="/">{{site_title}}</a>
+    </h1>
+    <small>
+      {{#archive}}The Archive{{/archive}}
+      {{^archive}}
+        {{#entries}}
+          <time datetime="{{date_iso}}">{{date_month_name}} {{date_day}}, {{date_year}}</time>
+        {{/entries}}
+        {{^entries}}
+          {{title}}
+        {{/entries}}
+      {{/archive}}
+    </small>
+  </header>
+  
+  {{#entry}}
+  <dl class="post" itemscope itemtype="http://schema.org/Recipe">
+  	<dt itemprop="name">{{title}}</dt>
+  	<dd itemprop="ingredients">{{body}}</dd>
+	</dl>
+	{{/entry}}
+
+	{{#entries}}
+  <dl itemscope itemtype="http://schema.org/Recipe">
+    <dt itemprop="name">
+    {{#archive}}<a href="{{url}}">{{/archive}}
+      {{title}}
+    {{#archive}}</a>{{/archive}}
+    </dt>
+    {{#body}}<dd itemprop="ingredients">{{body}}</dd>{{/body}}
+  </dl>
+  {{/entries}}
+
+  <footer>
+    <a href="./menu/archive">Archive</a>
+    <p><b>
+      Menu updates weekly, by invitation only.
+    </b></p>
+    <p>&copy; MMXII {{site_title}}</p>
+    <i class="ss-cocktail"></i>
+    <div class="social">
+      <p><a href="http://twitter.com/barlawrence" target="_blank" class="ss-twitter ss-social">@barlawrence</a></p>
+      <p><a href="http://feeds.feedburner.com/BarLawrence" target="_blank" class="ss-icon ss-social">RSS</a></p>
+    </div>
+  </footer>
+
+</body>
+</html>
