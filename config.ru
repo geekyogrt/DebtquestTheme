@@ -41,7 +41,7 @@ class Siteleaf
       'date' => '2012-11-01',
       'month' => 'November',
       'day' => '1',
-      ''
+      'year' => '2012',
       'entries' => [
         {
           'id' => 2,
@@ -50,7 +50,11 @@ class Siteleaf
           'body' => 'Champagne, St. Germain, bitters.',
           'excerpt' => '',
           'description' => '',
-          'published_at' => '2012-12-15'
+          'published_at' => '2012-12-15',
+          'month' => 'December',
+          'day' => '15',
+          'year' => '2012',
+          'first' => true
         },
         {
           'id' => 3,
@@ -59,7 +63,11 @@ class Siteleaf
           'body' => 'Gin, simple syrup, lemon juice, champagne.',
           'excerpt' => '',
           'description' => '',
-          'published_at' => '2012-12-15'
+          'published_at' => '2012-12-15',
+          'month' => 'December',
+          'day' => '15',
+          'year' => '2012',
+          'last' => true
         }
       ]
     }]

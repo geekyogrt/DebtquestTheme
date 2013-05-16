@@ -16,17 +16,19 @@
     <h1>
       <a href="/">{{#site}}{{title}}{{/site}}</a>
     </h1>
-    <small>
-      {{#archive}}The Archive{{/archive}}
-      {{^archive}}
-        {{#entries}}
-          <time datetime="{{date_iso}}">{{date_month_name}} {{date_day}}, {{date_year}}</time>
-        {{/entries}}
-        {{^entries}}
-          {{title}}
-        {{/entries}}
-      {{/archive}}
-    </small>
+    
+    {{#archive}}<small>The Archive</small>{{/archive}}
+    {{^archive}}
+      {{#entries}}
+        {{#first}}
+        <time datetime="{{date_iso}}">{{month}} {{day}}, {{year}}</time>
+        {{/first}}
+      {{/entries}}
+      {{^entries}}
+        <small>{{title}}</small>
+      {{/entries}}
+    {{/archive}}
+    
   </header>
 
   {{#entry}}
