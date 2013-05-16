@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset=utf-8 />
-	<title>{{site_title}}{{#archive}} | Archive{{/archive}}</title>
+	<title>{{#site}}{{title}}{{/site}}{{#archive}} | Archive{{/archive}}</title>
 	<link rel="stylesheet" href="./assets/style.css"  />
   <link rel="stylesheet" href="//cdn.symbolset.com/e50f9502fcc9151fb1f671964600efa504506021/symbolset.css" />
 	<link rel="alternate" type="application/rss+xml" title="Bar Lawrence (RSS)" href="http://feeds.feedburner.com/BarLawrence" />
@@ -14,7 +14,7 @@
 	<header>
     <small>Est. 2012</small>
     <h1>
-      <a href="/">{{site_title}}</a>
+      <a href="/">{{#site}}{{title}}{{/site}}</a>
     </h1>
     <small>
       {{#archive}}The Archive{{/archive}}
@@ -28,7 +28,7 @@
       {{/archive}}
     </small>
   </header>
-  
+
   {{#entry}}
   <dl class="post" itemscope itemtype="http://schema.org/Recipe">
   	<dt itemprop="name">{{title}}</dt>
@@ -52,7 +52,7 @@
     <p><b>
       Menu updates weekly, by invitation only.
     </b></p>
-    <p>&copy; MMXII {{site_title}}</p>
+    <p>&copy; MMXII {{#site}}{{title}}{{/site}}</p>
     <i class="ss-cocktail"></i>
     <div class="social">
       <p><a href="http://twitter.com/barlawrence" target="_blank" class="ss-twitter ss-social">@barlawrence</a></p>
