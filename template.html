@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset=utf-8 />
-	<title>{{#site}}{{title}}{{/site}} | {{title}}</title>
+	<title>{{site.title}} | {{title}}</title>
 	<link rel="stylesheet" href="/assets/style.css"  />
   <link rel="stylesheet" href="//cdn.symbolset.com/e50f9502fcc9151fb1f671964600efa504506021/symbolset.css" />
 	<link rel="alternate" type="application/rss+xml" title="Bar Lawrence (RSS)" href="http://feeds.feedburner.com/BarLawrence" />
@@ -14,45 +14,41 @@
 	<header>
     <small>Est. 2012</small>
     <h1>
-      <a href="/">{{#site}}{{title}}{{/site}}</a>
+      <a href="/">{{site.title}}</a>
     </h1>
     
-    {{#archive}}<small>The Archive</small>{{/archive}}
-    {{^archive}}
-      {{#entries}}
-        {{#first}}
-        <time datetime="{{date_iso}}">{{month}} {{day}}, {{year}}</time>
-        {{/first}}
-      {{/entries}}
-      {{^entries}}
-        <small>{{title}}</small>
-      {{/entries}}
-    {{/archive}}
+    {% if archive %}
+      <small>The Archive</small>
+    {% elsif entries %}
+      <time datetime="{{date_iso}}">{{entries.first.month}} {{entries.first.day}}, {{entries.first.year}}</time>
+    {% else %}
+      <small>{{title}}</small>
+    {% endif %}
     
   </header>
 
-  {{#entry}}
+  {% if entry %}
   <dl class="post" itemscope itemtype="http://schema.org/Recipe">
   	<dt itemprop="name">{{title}}</dt>
   	<dd itemprop="ingredients">{{body}}</dd>
 	</dl>
-	{{/entry}}
+	{% endif %}
 
-	{{#entries}}
+	{% for entry in entries %}
   <dl itemscope itemtype="http://schema.org/Recipe">
-    <dt itemprop="name"><a href="{{url}}">{{title}}</a></dt>
-    {{^archive}}
-    <dd itemprop="ingredients">{{body}}</dd>
-    {{/archive}}
+    <dt itemprop="name"><a href="{{entry.url}}">{{entry.title}}</a></dt>
+    {% if !archive %}
+    <dd itemprop="ingredients">{{entry.body}}</dd>
+    {% endif %}
   </dl>
-  {{/entries}}
+  {% endfor %}
 
   <footer>
     <a href="/menu/archive">Archive</a>
     <p><b>
       Menu updates weekly, by invitation only.
     </b></p>
-    <p>&copy; MMXII {{#site}}{{title}}{{/site}}</p>
+    <p>&copy; MMXII {{site.title}}</p>
     <i class="ss-cocktail ss-symbolicons-line"></i>
     <div class="social">
       <p><a href="http://twitter.com/barlawrence" target="_blank" class="ss-twitter ss-social">@barlawrence</a></p>

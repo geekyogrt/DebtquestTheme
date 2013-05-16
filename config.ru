@@ -1,4 +1,4 @@
-require 'mustache'
+require 'liquid'
 
 class Siteleaf
   def call(env)    
@@ -12,9 +12,9 @@ class Siteleaf
     else    
       data = get_page(local_path)
       data['site'] = site
-      stache = Mustache.new
-      stache.template_file = template
-      output = stache.render(data)
+      template_data = File.new(template).read
+      liquid = Liquid::Template.parse(template_data)
+      output = liquid.render(data)
       [200, {'Content-Type' => 'text/html'}, [output]]
     end
   end
@@ -60,10 +60,10 @@ class Siteleaf
       'body' => '',
       'excerpt' => '',
       'description' => '',
-      'date' => '2012-11-01',
-      'month' => 'November',
-      'day' => '1',
-      'year' => '2012',
+      'date' => '2013-06-03',
+      'month' => 'June',
+      'day' => '3',
+      'year' => '2013',
       'page' => true,
       'page_size' => 2,
       'entries' => [
