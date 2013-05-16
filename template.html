@@ -40,10 +40,10 @@
 
 	{{#entries}}
   <dl itemscope itemtype="http://schema.org/Recipe">
-    <dt itemprop="name">
-    <a href="{{url}}">{{title}}</a>
-    </dt>
-    {{#body}}<dd itemprop="ingredients">{{body}}</dd>{{/body}}
+    <dt itemprop="name"><a href="{{url}}">{{title}}</a></dt>
+    {{^archive}}
+    <dd itemprop="ingredients">{{body}}</dd>
+    {{/archive}}
   </dl>
   {{/entries}}
 
