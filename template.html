@@ -3,7 +3,7 @@
 <head>
 	<meta charset=utf-8 />
 	<title>{{#site}}{{title}}{{/site}}{{#archive}} | Archive{{/archive}}</title>
-	<link rel="stylesheet" href="./assets/style.css"  />
+	<link rel="stylesheet" href="/assets/style.css"  />
   <link rel="stylesheet" href="//cdn.symbolset.com/e50f9502fcc9151fb1f671964600efa504506021/symbolset.css" />
 	<link rel="alternate" type="application/rss+xml" title="Bar Lawrence (RSS)" href="http://feeds.feedburner.com/BarLawrence" />
 	<script type="text/javascript" src="//use.typekit.net/tpm0tpl.js"></script>
@@ -41,9 +41,7 @@
 	{{#entries}}
   <dl itemscope itemtype="http://schema.org/Recipe">
     <dt itemprop="name">
-    {{#archive}}<a href="{{url}}">{{/archive}}
-      {{title}}
-    {{#archive}}</a>{{/archive}}
+    <a href="{{url}}">{{title}}</a>
     </dt>
     {{#body}}<dd itemprop="ingredients">{{body}}</dd>{{/body}}
   </dl>
@@ -55,7 +53,7 @@
       Menu updates weekly, by invitation only.
     </b></p>
     <p>&copy; MMXII {{#site}}{{title}}{{/site}}</p>
-    <i class="ss-cocktail"></i>
+    <i class="ss-cocktail ss-symbolicons-line"></i>
     <div class="social">
       <p><a href="http://twitter.com/barlawrence" target="_blank" class="ss-twitter ss-social">@barlawrence</a></p>
       <p><a href="http://feeds.feedburner.com/BarLawrence" target="_blank" class="ss-icon ss-social">RSS</a></p>

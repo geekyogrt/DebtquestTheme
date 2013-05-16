@@ -10,12 +10,27 @@ class Siteleaf
     if !File.directory?(local_path) and File.exists?(local_path)
       Rack::File.new(Dir.pwd).call(env)
     else    
-      data = pages.first
+      data = get_page(local_path)
       data['site'] = site
       stache = Mustache.new
       stache.template_file = template
       output = stache.render(data)
       [200, {'Content-Type' => 'text/html'}, [output]]
+    end
+  end
+  
+  def get_page(path)
+    slugs = path.split('/')
+    if slugs.count == 0
+      return pages.first
+    else
+      this_page = {}
+      slugs.each do |slug|
+        (this_page['entries'] || pages).each do |page|
+          this_page = page if page['slug'] == slug
+        end
+      end
+      return this_page
     end
   end
   
@@ -35,6 +50,7 @@ class Siteleaf
       'id' => 1,
       'title' => 'Menu',
       'slug' => 'menu',
+      'url' => '/',
       'body' => '',
       'excerpt' => '',
       'description' => '',
@@ -47,6 +63,7 @@ class Siteleaf
           'id' => 2,
           'title' => 'Champagne Cocktail',
           'slug' => 'champagne-cocktail',
+          'url' => '/menu/champagne-cocktail/',
           'body' => 'Champagne, St. Germain, bitters.',
           'excerpt' => '',
           'description' => '',
@@ -54,12 +71,14 @@ class Siteleaf
           'month' => 'December',
           'day' => '15',
           'year' => '2012',
+          'entry' => true,
           'first' => true
         },
         {
           'id' => 3,
           'title' => 'French 75',
           'slug' => 'french-75',
+          'url' => '/menu/french-75/',
           'body' => 'Gin, simple syrup, lemon juice, champagne.',
           'excerpt' => '',
           'description' => '',
@@ -67,6 +86,7 @@ class Siteleaf
           'month' => 'December',
           'day' => '15',
           'year' => '2012',
+          'entry' => true,
           'last' => true
         }
       ]
