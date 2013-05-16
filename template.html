@@ -29,10 +29,10 @@
 
   {% if entry %}
   <dl class="post" itemscope itemtype="http://schema.org/Recipe">
-  	<dt itemprop="name">{{title}}</dt>
-  	<dd itemprop="ingredients">{{body}}</dd>
-	</dl>
-	{% endif %}
+    <dt itemprop="name">{{title}}</dt>
+    <dd itemprop="ingredients">{{body}}</dd>
+  </dl>
+  {% endif %}
 
 	{% for entry in entries %}
   <dl itemscope itemtype="http://schema.org/Recipe">
